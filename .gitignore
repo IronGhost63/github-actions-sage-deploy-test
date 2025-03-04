@@ -32,3 +32,5 @@ wp-config.php
 #/wp-content/themes
 
 local-xdebuginfo.php
+wp-content/cache
+wp-content/themes/wp63-test/public
