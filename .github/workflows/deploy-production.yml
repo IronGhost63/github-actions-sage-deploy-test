@@ -1,0 +1,6 @@
+name: Build and Deploy to production
+run-name: ${{ github.actor }} is testing out GitHub Actions
+on:
+  push:
+    branches:
+      - deploy/production
