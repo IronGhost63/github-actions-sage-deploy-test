@@ -7,7 +7,7 @@ on:
 jobs:
   build-assets:
     environment: staging
-    uses: IronGhost63/github-actions-sage-deploy-test/.github/workflows/jobs/build.yml@develop
+    uses: ./.github/workflows/jobs/build.yml
   push-to-cloudways:
     environment: staging
     name: Push change to Cloudways
