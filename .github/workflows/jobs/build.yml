@@ -1,0 +1,32 @@
+name: Build and optimize assets
+
+on:
+  workflow_call:
+    inputs:
+      theme-path:
+        required: true
+        type: string
+jobs:
+  build-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Build JS and CSS
+        run: |
+          npm install
+          npm run build
+      - name: Install PHP Dependencies
+        uses: php-actions/composer@v6
+        with:
+          dev: no
+          args: --optimize-autoloader
+          php_version: 8.1
+          version: 2
+          working_dir: ${{ vars.THEME_PATH }}
+      - name: Add build artifact
+        run: |
+          mv ${{ vars.THEME_PATH }}/.gitignore ${{ vars.THEME_PATH }}/temp.gitignore
+          git add ${{ vars.THEME_PATH }}/public
+          git commit -m 'Build Artifacts'
+          git push
