@@ -1,0 +1,15 @@
+name: Build and Deploy to staging
+run-name: ${{ github.actor }} is testing out GitHub Actions
+on:
+  push:
+    branches:
+      - deploy/staging
+jobs:
+  build-assets:
+    environment: staging
+    uses: IronGhost63/github-actions-sage-deploy-test/.github/workflows/jobs/build.yml@develop
+  push-to-cloudways:
+    environment: staging
+    name: Push change to Cloudways
+    run: |
+      echo "Test Push"

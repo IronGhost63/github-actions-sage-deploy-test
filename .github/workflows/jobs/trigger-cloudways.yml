@@ -1,0 +1,7 @@
+name: Cloudways Deploy Trigger
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
