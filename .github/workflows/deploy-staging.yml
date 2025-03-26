@@ -7,7 +7,7 @@ on:
 jobs:
   build-assets:
     environment: staging
-    uses: ./.github/jobs/build.yml
+    uses: ./.github/jobs/build.yml@develop
   push-to-cloudways:
     environment: staging
     name: Push change to Cloudways
