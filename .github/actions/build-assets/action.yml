@@ -24,7 +24,7 @@ runs:
         cache: 'npm'
         cache-dependency-path: "${{ inputs.theme-path}}/package-lock.json"
     - name: Compile assets
-      working-directory: ${{ vars.THEME_PATH }}
+      working-directory: ${{ THEME_PATH }}
       run: |
         npm install
         npm run build
@@ -35,9 +35,9 @@ runs:
         args: --optimize-autoloader
         php_version: 8.2
         version: 2
-        working_dir: ${{ vars.THEME_PATH }}
+        working_dir: ${{ THEME_PATHH }}
     - name: Add build artifact
-      working-directory: ${{ vars.THEME_PATH }}
+      working-directory: ${{ THEME_PATH }}
       run: |
         git branch $TARGET_BRANCH
         git checkout $TARGET_BRANCH
