@@ -22,8 +22,9 @@ jobs:
           cache-dependency-path: "${{ inputs.theme-path}}/package-lock.json"
       - name: Compile assets
         working-directory: ${{ vars.THEME_PATH }}
-        run: npm install
-        run: npm run build
+        run: |
+          npm install
+          npm run build
       - name: Install PHP Dependencies
         uses: php-actions/composer@v6
         with:
