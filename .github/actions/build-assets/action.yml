@@ -6,9 +6,6 @@ inputs:
   target-branch:
     required: true
     type: string
-env:
-  THEME_PATH: ${{ inputs.theme-path}}
-  TARGET_BRANCH: ${{ inputs.ataget-branch }}
 runs:
   runs-on: ubuntu-latest
   environment: staging
@@ -24,7 +21,7 @@ runs:
         cache: 'npm'
         cache-dependency-path: "${{ inputs.theme-path}}/package-lock.json"
     - name: Compile assets
-      working-directory: ${{ THEME_PATH }}
+      working-directory: ${{ inputs.theme-path }}
       run: |
         npm install
         npm run build
@@ -35,13 +32,13 @@ runs:
         args: --optimize-autoloader
         php_version: 8.2
         version: 2
-        working_dir: ${{ THEME_PATHH }}
+        working_dir: ${{ inputs.theme-path }}
     - name: Add build artifact
-      working-directory: ${{ THEME_PATH }}
+      working-directory: ${{ inputs.theme-path }}
       run: |
-        git branch $TARGET_BRANCH
-        git checkout $TARGET_BRANCH
+        git branch ${{ inputs.taget-branch }}
+        git checkout ${{ inputs.taget-branch }}
         git add --force ./vendor
         git add --force ./public
         git commit -m 'Build artifacts'
-        git push --force --set-upstream origin $TARGET_BRANCH
+        git push --force --set-upstream origin ${{ inputs.taget-branch }}
