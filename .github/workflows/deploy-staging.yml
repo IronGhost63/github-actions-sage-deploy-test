@@ -1,5 +1,5 @@
 name: Build and Deploy to staging
-run-name: ${{ github.actor }} is testing out GitHub Actions
+run-name: Deploy to staging (Initiated by ${{ github.actor }})
 on:
   push:
     branches:
