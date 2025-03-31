@@ -43,4 +43,4 @@ jobs:
           git add --force ./vendor
           git add --force ./public
           git commit -m 'Build artifacts'
-          git push
+          git push --force --set-upstream origin actions/deployment
