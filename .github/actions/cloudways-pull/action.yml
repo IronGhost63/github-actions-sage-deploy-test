@@ -19,4 +19,4 @@ runs:
       shell: bash
       run: |
         echo "API Key: ${{ inputs.api-key }}"
-        echo "App ID: ${{ inputs.appplication-id }}"
+        echo "App ID: ${{ inputs.application-id }}"
