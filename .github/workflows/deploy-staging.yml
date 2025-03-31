@@ -5,11 +5,13 @@ on:
     branches:
       - deploy/staging
 jobs:
-  build-assets:
+  deployment:
     environment: staging
-    uses: ./.github/workflows/jobs-build.yml
-  push-to-cloudways:
-    environment: staging
-    name: Push change to Cloudways
-    run: |
-      echo "Test Push"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Assets
+        uses: ./.github/workflows/jobs-build.yml
+      - name: Push to CLoudways
+        run: |
+          ls
+          echo "Test Push"
