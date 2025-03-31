@@ -7,7 +7,7 @@ inputs:
     required: true
     type: string
 env:
-  THEME_PATH: ${{ inputs.theme-path}}
+  THEME_PATH: ${{ inputs.theme-path }}
   TARGET_BRANCH: ${{ inputs.ataget-branch }}
 runs:
   runs-on: ubuntu-latest
@@ -24,7 +24,7 @@ runs:
         cache: 'npm'
         cache-dependency-path: "${{ inputs.theme-path}}/package-lock.json"
     - name: Compile assets
-      working-directory: ${{ THEME_PATH }}
+      working-directory: ${{ env.THEME_PATH }}
       run: |
         npm install
         npm run build
@@ -35,9 +35,9 @@ runs:
         args: --optimize-autoloader
         php_version: 8.2
         version: 2
-        working_dir: ${{ THEME_PATHH }}
+        working_dir: ${{ env.THEME_PATHH }}
     - name: Add build artifact
-      working-directory: ${{ THEME_PATH }}
+      working-directory: ${{ env.THEME_PATH }}
       run: |
         git branch $TARGET_BRANCH
         git checkout $TARGET_BRANCH
