@@ -1,6 +1,22 @@
 name: Build and Deploy to production
-run-name: ${{ github.actor }} is testing out GitHub Actions
+run-name: Deploy to production (Initiated by ${{ github.actor }})
 on:
   push:
     branches:
       - deploy/production
+jobs:
+  deployment:
+    environment: production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Build Assets
+        uses: ./.github/workflows/jobs-build.yml
+        with:
+          theme-path: ${{ vars.THEME_PATH }}
+          target-0branch: "actions/deployment-production"
+      - name: Push to Cloudways
+        run: |
+          ls
+          echo "Test Push"

@@ -5,16 +5,17 @@ on:
     branches:
       - deploy/staging
 jobs:
-  build:
-    uses: ./.github/workflows/jobs-build.yml
-    with:
-      theme-path: ${{ vars.THEME_PATH }}
   deployment:
     environment: staging
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Build Assets
+        uses: ./.github/workflows/jobs-build.yml
+        with:
+          theme-path: ${{ vars.THEME_PATH }}
+          target-0branch: "actions/deployment-staging"
       - name: Push to Cloudways
         run: |
           ls
