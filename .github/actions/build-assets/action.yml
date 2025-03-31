@@ -6,10 +6,10 @@ inputs:
   target-branch:
     required: true
     type: string
-defaults:
-  run:
-    shell: bash
 runs:
+  defaults:
+    run:
+      shell: bash
   steps:
     - name: Checkout repository
       uses: actions/checkout@v4
