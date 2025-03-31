@@ -8,10 +8,10 @@ inputs:
     type: string
   server-id:
     required: true
-    type: number
+    type: string
   application-id:
     required: true
-    type: number
+    type: string
 runs:
   using: composite
   steps:
@@ -20,3 +20,4 @@ runs:
       run: |
         echo "API Key: ${{ inputs.api-key }}"
         echo "App ID: ${{ inputs.application-id }}"
+        echo "Server ID: ${{ inputs.server-id }}"
