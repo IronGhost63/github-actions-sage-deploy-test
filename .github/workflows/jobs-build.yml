@@ -35,7 +35,11 @@ jobs:
           working_dir: ${{ vars.THEME_PATH }}
       - name: Add build artifact
         working-directory: ${{ vars.THEME_PATH }}
-        run: ls
+        run: |
+          git add --force ./vendor
+          git add --force ./public
+          git commit -m 'Build artifacts'
+          git push
 # jobs:
 #   build-assets:
 #     runs-on: ubuntu-latest
