@@ -33,3 +33,4 @@ wp-config.php
 
 local-xdebuginfo.php
 wp-content/cache
+.DS_Store

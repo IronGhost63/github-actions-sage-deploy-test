@@ -1,15 +1,21 @@
 name: Build and Deploy to staging
-run-name: ${{ github.actor }} is testing out GitHub Actions
+run-name: Deploy to staging (Initiated by ${{ github.actor }})
 on:
   push:
     branches:
       - deploy/staging
 jobs:
-  build-assets:
+  build:
+    uses: ./.github/workflows/jobs-build.yml
+    with:
+      theme-path: ${{ vars.THEME_PATH }}
+  deployment:
     environment: staging
-    uses: IronGhost63/github-actions-sage-deploy-test/.github/workflows/jobs/build.yml@develop
-  push-to-cloudways:
-    environment: staging
-    name: Push change to Cloudways
-    run: |
-      echo "Test Push"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Push to Cloudways
+        run: |
+          ls
+          echo "Test Push"
