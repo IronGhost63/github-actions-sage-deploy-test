@@ -10,6 +10,8 @@ jobs:
     environment: staging
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Build Assets
         uses: ./.github/workflows/jobs-build.yml
       - name: Push to CLoudways
