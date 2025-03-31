@@ -39,9 +39,9 @@ runs:
       shell: bash
       working-directory: ${{ inputs.theme-path }}
       run: |
-        git branch ${{ inputs.taget-branch }}
-        git checkout ${{ inputs.taget-branch }}
+        git branch ${{ inputs.target-branch }}
+        git checkout ${{ inputs.target-branch }}
         git add --force ./vendor
         git add --force ./public
         git commit -m 'Build artifacts'
-        git push --force --set-upstream origin ${{ inputs.taget-branch }}
+        git push --force --set-upstream origin ${{ inputs.target-branch }}
