@@ -1,0 +1,22 @@
+name: Cloudways git deployment
+inputs:
+  target-branch:
+    required: true
+    type: string
+  api-key:
+    required: true
+    type: string
+  server-id:
+    required: true
+    type: number
+  application-id:
+    required: true
+    type: number
+runs:
+  using: composite
+  steps:
+    - name: Debug
+      shell: bash
+      run: |
+        echo "API Key: ${{ inputs.api-key }}"
+        echo "App ID: ${{ inputs.appplication-id }}"
