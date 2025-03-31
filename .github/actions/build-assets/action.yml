@@ -7,14 +7,14 @@ inputs:
     required: true
     type: string
 runs:
-  defaults:
-    run:
-      shell: bash
+  using: "composite"
   steps:
     - name: Checkout repository
       uses: actions/checkout@v4
     - run: git config --global user.email "git@invisibleink.asia"
+      shell: bash
     - run: git config --global user.name "Invisible Ink Git Bot"
+      shell: bash
     - name: Setup Node
       uses: actions/setup-node@v4
       with:
@@ -22,6 +22,7 @@ runs:
         cache: 'npm'
         cache-dependency-path: "${{ inputs.theme-path}}/package-lock.json"
     - name: Compile assets
+      shell: bash
       working-directory: ${{ inputs.theme-path }}
       run: |
         npm install
@@ -35,6 +36,7 @@ runs:
         version: 2
         working_dir: ${{ inputs.theme-path }}
     - name: Add build artifact
+      shell: bash
       working-directory: ${{ inputs.theme-path }}
       run: |
         git branch ${{ inputs.taget-branch }}
