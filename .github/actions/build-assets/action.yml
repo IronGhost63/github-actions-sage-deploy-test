@@ -6,9 +6,10 @@ inputs:
   target-branch:
     required: true
     type: string
+defaults:
+  run:
+    shell: 'bash'
 runs:
-  runs-on: ubuntu-latest
-  environment: staging
   steps:
     - name: Checkout repository
       uses: actions/checkout@v4
