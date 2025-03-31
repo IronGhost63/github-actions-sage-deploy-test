@@ -23,3 +23,8 @@ jobs:
           api-key: ${{ secrets.CLOUDWAYS_API_KEY }}
           server-id: ${{ env.CLOUDWAYS_SERVER_ID }}
           application-id: ${{ env.CLOUDWAYS_APP_ID }}
+      - name: debug
+        run: |
+          echo "API Key: ${{ secrets.CLOUDWAYS_API_KEY }}"
+          echo "Server ID: ${{ env.CLOUDWAYS_SERVER_ID }}"
+          echo "App ID: ${{ env.CLOUDWAYS_APP_ID }}"
