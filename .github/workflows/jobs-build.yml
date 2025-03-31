@@ -5,15 +5,27 @@ on:
       theme-path:
         required: true
         type: string
+env:
+  THEME_PATH: ${{ vars.THEME_PATH}}
 jobs:
   build-assets:
     runs-on: ubuntu-latest
+    environment: staging
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Build JS and CSS
+      - name: Compile assets
         run: |
-          ls
+          echo "theme path: $THEME_PATH"
+# jobs:
+#   build-assets:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+#       - name: Build JS and CSS
+#         run: |
+#           ls
       #     npm install
       #     npm run build
       # - name: Install PHP Dependencies
