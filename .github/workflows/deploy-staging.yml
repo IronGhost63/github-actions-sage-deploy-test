@@ -7,8 +7,9 @@ on:
       - develop
 jobs:
   build:
-    environment: staging
     uses: ./.github/workflows/jobs-build.yml
+    with:
+      theme-path: ${{ vars.THEME_PATH }}
   deployment:
     environment: staging
     runs-on: ubuntu-latest

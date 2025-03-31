@@ -6,7 +6,7 @@ on:
         required: true
         type: string
 env:
-  THEME_PATH: ${{ vars.THEME_PATH}}
+  THEME_PATH: ${{ inputs.THEME_PATH}}
 jobs:
   build-assets:
     runs-on: ubuntu-latest
