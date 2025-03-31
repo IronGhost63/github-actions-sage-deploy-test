@@ -12,9 +12,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Build Assets
-        uses: ./.github/workflows/jobs-build.yml
-      - name: Push to CLoudways
+      # - name: Build Assets
+      #   uses: ./.github/workflows/jobs-build.yml
+      - name: Push to Cloudways
         run: |
           ls
           echo "Test Push"
