@@ -30,7 +30,7 @@ jobs:
         with:
           dev: no
           args: --optimize-autoloader
-          php_version: 8.1
+          php_version: 8.2
           version: 2
           working_dir: ${{ vars.THEME_PATH }}
       - name: Add build artifact
