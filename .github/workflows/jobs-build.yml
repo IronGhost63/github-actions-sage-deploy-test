@@ -32,7 +32,7 @@ jobs:
           args: --optimize-autoloader
           php_version: 8.1
           version: 2
-          working-dir: ${{ vars.THEME_PATH }}
+          working_dir: ${{ vars.THEME_PATH }}
       - name: Add build artifact
         working-directory: ${{ vars.THEME_PATH }}
         run: ls
