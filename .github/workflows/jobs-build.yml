@@ -15,8 +15,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Compile assets
-        run: |
-          echo "theme path: $THEME_PATH"
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: ${{ inputs.theme-path}}/package-lock.json
+        working-directory: ${{ inputs.theme-path}}
+        run: npm install
+        run: npm run build
+      - name: Install PHP Dependencies
+        uses: php-actions/composer@v6
+        with:
+          dev: no
+          args: --optimize-autoloader
+          php_version: 8.1
+          version: 2
+          working-dir: ${{ vars.THEME_PATH }}
+      - name: Add build artifact
+        working-directory: ${{ vars.THEME_PATH }}
+        run: ls
 # jobs:
 #   build-assets:
 #     runs-on: ubuntu-latest
