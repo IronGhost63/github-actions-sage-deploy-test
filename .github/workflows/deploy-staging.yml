@@ -12,7 +12,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Build Assets
-        uses: ./.github/actions/build
+        uses: ./.github/actions/build-assets
         with:
           theme-path: ${{ vars.THEME_PATH }}
           target-0branch: "actions/deployment-staging"
