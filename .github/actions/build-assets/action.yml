@@ -1,50 +1,47 @@
 name: Build and optimize assets
-on:
-  workflow_call:
-    inputs:
-      theme-path:
-        required: true
-        type: string
-      target-branch:
-        required: true
-        type: string
+inputs:
+  theme-path:
+    required: true
+    type: string
+  target-branch:
+    required: true
+    type: string
 env:
   THEME_PATH: ${{ inputs.theme-path}}
   TARGET_BRANCH: ${{ inputs.ataget-branch }}
-jobs:
-  build-assets:
-    runs-on: ubuntu-latest
-    environment: staging
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - run: git config --global user.email "git@invisibleink.asia"
-      - run: git config --global user.name "Invisible Ink Git Bot"
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-          cache-dependency-path: "${{ inputs.theme-path}}/package-lock.json"
-      - name: Compile assets
-        working-directory: ${{ vars.THEME_PATH }}
-        run: |
-          npm install
-          npm run build
-      - name: Install PHP Dependencies
-        uses: php-actions/composer@v6
-        with:
-          dev: no
-          args: --optimize-autoloader
-          php_version: 8.2
-          version: 2
-          working_dir: ${{ vars.THEME_PATH }}
-      - name: Add build artifact
-        working-directory: ${{ vars.THEME_PATH }}
-        run: |
-          git branch $TARGET_BRANCH
-          git checkout $TARGET_BRANCH
-          git add --force ./vendor
-          git add --force ./public
-          git commit -m 'Build artifacts'
-          git push --force --set-upstream origin $TARGET_BRANCH
+runs:
+  runs-on: ubuntu-latest
+  environment: staging
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - run: git config --global user.email "git@invisibleink.asia"
+    - run: git config --global user.name "Invisible Ink Git Bot"
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+        cache-dependency-path: "${{ inputs.theme-path}}/package-lock.json"
+    - name: Compile assets
+      working-directory: ${{ vars.THEME_PATH }}
+      run: |
+        npm install
+        npm run build
+    - name: Install PHP Dependencies
+      uses: php-actions/composer@v6
+      with:
+        dev: no
+        args: --optimize-autoloader
+        php_version: 8.2
+        version: 2
+        working_dir: ${{ vars.THEME_PATH }}
+    - name: Add build artifact
+      working-directory: ${{ vars.THEME_PATH }}
+      run: |
+        git branch $TARGET_BRANCH
+        git checkout $TARGET_BRANCH
+        git add --force ./vendor
+        git add --force ./public
+        git commit -m 'Build artifacts'
+        git push --force --set-upstream origin $TARGET_BRANCH

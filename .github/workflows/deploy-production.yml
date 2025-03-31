@@ -15,7 +15,7 @@ jobs:
         uses: ./.github/actions/build-assets
         with:
           theme-path: ${{ vars.THEME_PATH }}
-          target-0branch: "actions/deployment-production"
+          target-branch: "actions/deployment-production"
       - name: Push to Cloudways
         run: |
           ls
