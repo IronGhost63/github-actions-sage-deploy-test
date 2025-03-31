@@ -38,6 +38,8 @@ jobs:
       - name: Add build artifact
         working-directory: ${{ vars.THEME_PATH }}
         run: |
+          git branch actions/deployment
+          git checkout actions/deployment
           git add --force ./vendor
           git add --force ./public
           git commit -m 'Build artifacts'
