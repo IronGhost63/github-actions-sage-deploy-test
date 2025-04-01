@@ -17,6 +17,9 @@ jobs:
           theme-path: ${{ vars.THEME_PATH }}
           target-branch: "actions/deployment-production"
       - name: Push to Cloudways
-        run: |
-          ls
-          echo "Test Push"
+        uses: ./.github/actions/cloudways-pull
+        with:
+          target-branch: "actions/deployment-staging"
+          api-key: ${{ secrets.CLOUDWAYS_API_KEY }}
+          server-id: ${{ vars.CLOUDWAYS_SERVER_ID }}
+          application-id: ${{ vars.CLOUDWAYS_APP_ID }}
