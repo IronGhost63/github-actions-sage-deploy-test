@@ -1,0 +1,31 @@
+.interactive-map__map-box {
+  @apply relative w-1/2;
+}
+
+.interactive-map__map-image {
+  @apply w-full h-auto;
+}
+
+.interactive-map__pin {
+  @apply absolute w-[18px] h-[18px] block rounded-full bg-gray-500 transition-all border border-gray-500;
+}
+
+.interactive-map__pin:hover {
+  @apply bg-gray-200;
+}
+
+.interactive-map__modal {
+  @apply hidden fixed w-[300px] h-[300px] right-[50px] top-[100px] border border-gray-400 shadow shadow-gray-400 p-6;
+}
+
+.interactive-map__modal.show {
+  @apply block;
+}
+
+.interactive-map__modal-description {
+  @apply mb-6;
+}
+
+.interactive-map__modal-close {
+  @apply border;
+}
